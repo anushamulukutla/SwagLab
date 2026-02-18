@@ -1,0 +1,13 @@
+# Configuration module for the automation framework.
+# Reads environment settings, browser preferences, and environment-specific URLs
+# from config.yaml. The 'env' key determines which environment section (qa/stage) is active.
+
+env: "qa"
+browser: "chrome"
+timeout: 10
+
+qa:
+  base_url: "https://www.saucedemo.com/"
+
+stage:
+  base_url: "https://stage.vosyn.ai"
