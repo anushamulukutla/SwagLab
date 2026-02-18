@@ -1,144 +1,130 @@
-Automation Framework – SauceDemo
-Overview
+# SauceDemo UI Automation Framework
 
-This is a Selenium-based automation framework using pytest and the Page Object Model (POM) design pattern for the SauceDemo
- application.
-The framework is implemented in Python and supports cross-browser testing, data-driven testing, and comprehensive reporting using Allure and HTML reports.
+## Overview
 
-Project Structure
-saucedemo ~/PycharmProjects/saucedemo
-├── .venv
-├── config
-│   ├── config.py
-│   └── config.yaml
-├── Pages
-│   ├── __init__.py
-│   ├── base.py
-│   └── Loginpage.py
-├── Reports
-├── testdata
-│   ├── checkout.json
-│   ├── login_data.json
-│   └── product.json
-├── tests
-│   ├── __init__.py
-│   └── test_home_page.py
-├── utils
-│   └── __init__.py
-├── .gitignore
-├── conftest.py
-├── pytest.ini
-├── README.md
-├── requirements.txt
+This project is a scalable and maintainable **UI Automation Framework** developed using **Python**, **Selenium WebDriver**, and **pytest**, following the **Page Object Model (POM)** design pattern. The framework is designed to automate functional testing of the SauceDemo web application.
 
+It supports **data-driven testing**, **centralized configuration**, and **advanced reporting using Allure and HTML reports**, making it suitable for real-world enterprise automation projects.
 
-config/ – Contains configuration files (Python and YAML) for environment settings, URLs, credentials, etc.
+---
 
-Pages/ – Implements Page Object Model classes for application pages.
+## Tech Stack
 
-Reports/ – Stores HTML and Allure test execution reports.
+- Language: Python
+- Automation Tool: Selenium WebDriver
+- Test Framework: pytest
+- Design Pattern: Page Object Model (POM)
+- Reporting: Allure Reports, pytest-html
+- Test Data: JSON
+- Configuration: YAML
+- Version Control: Git
 
-testdata/ – Contains JSON files for test data used in data-driven tests.
+---
 
-tests/ – Contains pytest test scripts.
+---
 
-utils/ – Utility/helper functions used across the framework.
+## Framework Features
 
-conftest.py – pytest fixtures for setup, teardown, and browser initialization.
+- Page Object Model (POM) implementation
+- Data-driven testing using JSON files
+- Centralized configuration using YAML
+- pytest fixtures for browser setup and teardown
+- HTML reporting using pytest-html
+- Allure reporting for advanced visualization
+- Modular and scalable framework design
+- Easy integration with CI/CD tools
 
-pytest.ini – Configuration for pytest execution.
+---
 
-requirements.txt – Python dependencies.
+## Prerequisites
 
-Prerequisites
+Ensure the following are installed on your system:
 
-Python 3.10+
+- Python 3.10 or higher
+- pip
+- Google Chrome browser
+- ChromeDriver (matching your browser version)
+- Allure Command Line Tool (optional, for Allure reports)
 
-Selenium
+---
 
-pytest
+## Installation Steps
 
-pytest-html
+### 1. Clone the Repository
+``bash
+git clone <your-repository-url>
+cd saucedemo
 
-Allure command-line (for generating Allure reports)
-
-Browser drivers (e.g., ChromeDriver, GeckoDriver)
-
-Virtual environment (.venv recommended)
-
-Install dependencies:
-
-# Create and activate virtual environment
+### 2.Create Virtual Environment
 python -m venv .venv
-source .venv/bin/activate   # Linux/macOS
-# .venv\Scripts\activate     # Windows
 
-# Install required packages
+###3.Activate Virtual Environment
+MAC: source .venv/bin/activate
+Windows:.venv\Scripts\activate
+
+### 4. Install Dependencies
 pip install -r requirements.txt
+----
+### Configuration
+config/config.yaml
 
-Configuration
-
-config/config.yaml – Store environment variables, base URL, browser type, etc.
-
-config/config.py – Reads YAML configuration and provides global access across tests.
-
-Example snippet from config.yaml:
-
-base_url: "https://www.saucedemo.com/"
-browser: "chrome"
+EXAMPLE: 
+base_url: https://www.saucedemo.com/
+browser: chrome
 implicit_wait: 10
+---
+## Run all tests
+pytest tests/
+----
+## Run tests with HTML report
+pytest tests/ --html=Reports/report.html --self-contained-html
 
-Test Execution
-Run All Tests
-pytest tests/ --alluredir=Reports/allure_raw --html=Reports/report.html --self-contained-html
+---
+## Run tests with Allure report
+pytest tests/ --alluredir=Reports/allure-results
+---
+## View Allure Report
+allure serve Reports/allure-results
 
-Run Specific Test File
-pytest tests/test_home_page.py --alluredir=Reports/allure_raw --html=Reports/report.html --self-contained-html
+## Run specific test file
+pytest tests/test_home_page.py
 
-Generate Allure Report
-allure serve Reports/allure_raw
+##Test Data Management
+Test data is stored in JSON files inside the testdata folder:
+login_data.json
+checkout.json
+product.json
+This enables data-driven testing and improves flexibility.
 
-Reporting
+Page Object Model (POM)
+Page Object Model (POM) is a design pattern in Selenium that creates an object repository for storing all web elements. It helps reduce code duplication and improves test case maintenance.
 
-HTML Reports – Generated using pytest-html. Reports include test status, error screenshots, and detailed execution logs.
+In POM, each web page of an application is considered as a class file. Each class file contains only the web page elements. Using these elements, you can perform operations on the website under test.
 
-Allure Reports – Provides interactive dashboards, attachments, steps, and graphs for deeper test insights.
+Why Page Object Model?
+Helps with easy maintenance.
+Reusability of code.
+Readability and reliability of scripts.
+Provides structure to the automation framework.
 
-Test Data
 
-JSON files under testdata/ folder are used for data-driven testing.
 
-Example files:
+##Future Enhancements
+CI/CD integration (GitHub Actions / Jenkins)
+Cross-browser execution support
+Parallel test execution
+Docker integration
+Screenshot capture on failure
 
-login_data.json – Login credentials
 
-checkout.json – Checkout details
 
-product.json – Product data
 
-Framework Features
 
-Page Object Model (POM) for maintainable and scalable code
 
-Data-driven testing using JSON files
 
-Cross-browser testing support (Chrome, Firefox)
 
-pytest fixtures for setup and teardown
 
-HTML & Allure reporting for easy analysis
 
-Config-driven design for easy environment management
 
-Contribution Guidelines
 
-Follow PEP8 coding standards
-
-Create separate branches for new features or bug fixes
-
-Use meaningful commit messages
-
-Add tests for any new functionality
-
-Update README and documentation for changes
 
