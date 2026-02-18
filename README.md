@@ -89,14 +89,14 @@ allure serve Reports/allure-results
 ## Run specific test file
 pytest tests/test_home_page.py
 
-##Test Data Management
+## Test Data Management
 Test data is stored in JSON files inside the testdata folder:
 login_data.json
 checkout.json
 product.json
 This enables data-driven testing and improves flexibility.
 
-Page Object Model (POM)
+## Page Object Model (POM)
 Page Object Model (POM) is a design pattern in Selenium that creates an object repository for storing all web elements. It helps reduce code duplication and improves test case maintenance.
 
 In POM, each web page of an application is considered as a class file. Each class file contains only the web page elements. Using these elements, you can perform operations on the website under test.
@@ -109,7 +109,7 @@ Provides structure to the automation framework.
 
 
 
-##Future Enhancements
+## Future Enhancements
 CI/CD integration (GitHub Actions / Jenkins)
 Cross-browser execution support
 Parallel test execution
