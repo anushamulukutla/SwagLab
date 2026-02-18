@@ -42,4 +42,12 @@ class LoginPage(BasePage):
         """Click the login button to submit the form"""
         self.click(self.login_btn)
 
+    def login(self, username, password):
+
+        self.enter_username(username)
+        self.enter_password(password)
+        self.click_login_btn()
+
+
+
 
