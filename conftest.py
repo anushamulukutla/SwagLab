@@ -1,19 +1,22 @@
 import pytest
 from selenium import webdriver
 from Pages.Loginpage import LoginPage
-
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 
 @pytest.fixture(scope="session")
 def driver():
-    # Setup: initialize WebDriver
-    driver = webdriver.Chrome()  # or Firefox, Edge
-    #driver = webdriver.Firefox()
-    driver.maximize_window()
+
+    # Create Chrome options properly
+    chrome_options = Options()
+    chrome_options.add_argument("--start-maximized")
+
+    # DO NOT pass chrome_options=None
+    driver = webdriver.Chrome(options=chrome_options)
 
     yield driver
-    # Teardown: quit driver
-    driver.quit()
 
+    driver.quit()
 @pytest.fixture
 def login_page(driver):
     # Initialize HomePage object

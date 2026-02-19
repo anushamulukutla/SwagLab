@@ -11,6 +11,7 @@ class LoginPage(BasePage):
     usename=(By.ID,"user-name")
     password=(By.ID,"password")
     login_btn=(By.NAME,"login-button")
+    error_msg=(By.XPATH,"//div/h3[@data-test ='error']")
 
 
 
@@ -31,7 +32,6 @@ class LoginPage(BasePage):
         except:
             return False
 
-
     def enter_username(self,username):
         """Enter the username into the username field"""
         self.enter_text(self.usename, username)
@@ -41,6 +41,12 @@ class LoginPage(BasePage):
     def click_login_btn(self):
         """Click the login button to submit the form"""
         self.click(self.login_btn)
+    def get_error_message(self):
+        """Retrieve the error message text if login fails"""
+        error_msg=self.get_text(self.error_msg)
+        return error_msg
+
+
 
     def login(self, username, password):
 
