@@ -48,4 +48,12 @@ class LoginPage(BasePage):
 
 
 
+    def login(self, username, password):
+
+        self.enter_username(username)
+        self.enter_password(password)
+        self.click_login_btn()
+
+
+
 
