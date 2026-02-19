@@ -39,3 +39,4 @@ class TestLoginPage:
         self.Actual_text=login_page.get_error_message()
         self.Expected_text="Epic sadface: Sorry, this user has been locked out."
         assert self.Actual_text == self.Expected_text,"Error message does not match expected for locked out user"
+
