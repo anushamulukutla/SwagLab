@@ -10,6 +10,13 @@ def driver():
     # Create Chrome options properly
     chrome_options = Options()
     chrome_options.add_argument("--start-maximized")
+    # Disable password manager popups
+    prefs = {
+        "credentials_enable_service": False,
+        "profile.password_manager_enabled": False,
+        "profile.password_manager_leak_detection": False
+    }
+    chrome_options.add_experimental_option("prefs", prefs)
 
     # DO NOT pass chrome_options=None
     driver = webdriver.Chrome(options=chrome_options)

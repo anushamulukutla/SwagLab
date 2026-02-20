@@ -13,8 +13,6 @@ class LoginPage(BasePage):
     login_btn=(By.NAME,"login-button")
     error_msg=(By.XPATH,"//div/h3[@data-test ='error']")
 
-
-
     def __init__(self, driver):
         super().__init__(driver)
         self.config = get_config()  # Load YAML config
@@ -47,12 +45,6 @@ class LoginPage(BasePage):
         return error_msg
 
 
-
-    def login(self, username, password):
-
-        self.enter_username(username)
-        self.enter_password(password)
-        self.click_login_btn()
 
 
 
