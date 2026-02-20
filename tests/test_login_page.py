@@ -15,7 +15,6 @@ with open (TESTDATA_FILE) as loginuser_data:
 
 class TestLoginPage:
 
-
     @pytest.mark.smoke
     def test_open_saucedemopage(self, login_page):
         """
