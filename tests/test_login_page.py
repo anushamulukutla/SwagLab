@@ -1,10 +1,10 @@
 import json
-import time
 from pathlib import Path
-
+import time
+from selenium.webdriver.support import expected_conditions as EC
 import pytest
-import testdata
-from Pages.Loginpage import LoginPage
+from selenium.webdriver.support.wait import WebDriverWait
+
 
 # Load the testdata form testdata
 TESTDATA_FILE = Path(__file__).parent.parent / "testdata" / "login_data.json"
@@ -24,7 +24,7 @@ class TestLoginPage:
         login_page.open()
         assert login_page.is_page_loaded()
        # assert.is_page_loaded()
-    @pytest.mark.tc_id("TC_LGN_001")
+    @pytest.mark.tc_id("TC_LGN_002")
 
     def test_login_with_lock_out_user(self,login_page):
         """
@@ -40,3 +40,14 @@ class TestLoginPage:
         self.Expected_text="Epic sadface: Sorry, this user has been locked out."
         assert self.Actual_text == self.Expected_text,"Error message does not match expected for locked out user"
 
+    @pytest.mark.tc_id("TC_LGN_001")
+    def test_login_with_standard_user(self, login_page, driver):
+
+        login_page.enter_username( login_test_data["standardUser"]["username"])
+        login_page.enter_password(login_test_data["standardUser"]["password"])
+        login_page.click_login_btn()
+
+        wait = WebDriverWait(driver, 10)
+        wait.until(EC.url_contains("/inventory.html"))
+
+        assert "/inventory.html" in driver.current_url
