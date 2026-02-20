@@ -7,14 +7,15 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
 from selenium.webdriver.support.wait import WebDriverWait
-
-
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 # Load the testdata form testdata
 TESTDATA_FILE = Path(__file__).parent.parent / "testdata" / "login_data.json"
 #Open the test data file and load the data into a variable
 with open (TESTDATA_FILE) as loginuser_data:
     login_test_data = json.load(loginuser_data)
-
 
 class TestLoginPage:
 
