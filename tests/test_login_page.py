@@ -19,7 +19,6 @@ with open (TESTDATA_FILE) as loginuser_data:
 
 class TestLoginPage:
 
-
     @pytest.mark.smoke
     def test_open_saucedemopage(self, login_page):
         """
@@ -27,12 +26,13 @@ class TestLoginPage:
           """
         login_page.open()
         assert login_page.is_page_loaded()
+
        # assert.is_page_loaded()
     @pytest.mark.tc_id("TC_LGN_002")
+
     def test_login_with_lock_out_user(self,login_page):
         """
         TC_LGN_002: Verify login with locked out user fails
-        :return:
         """
         login_page.enter_username(login_test_data["lockedOutUser"]["username"])
         login_page.enter_password(login_test_data["lockedOutUser"]["password"])
@@ -54,11 +54,14 @@ class TestLoginPage:
         assert "/inventory.html" in driver.current_url
 
     @pytest.mark.tc_id("TC_LGN_003")
+
     def test_login_with_problem_user(self, login_page, driver):
         # TC_LGN_003: Verify problem_user logs in but shows broken product images/UI issues
-
-        # Login with problem_user (same as colleague did standard_user)
         login_page.enter_username(login_test_data["problemUser"]["username"])
         login_page.enter_password(login_test_data["problemUser"]["password"])
         login_page.click_login_btn()
+
+        time.sleep(1.5) # see the page after login
+        wait = WebDriverWait(driver, 20)
+        wait.until(EC.url_contains("/inventory.html"))
         assert "/inventory.html" in driver.current_url
