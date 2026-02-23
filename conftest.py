@@ -4,6 +4,9 @@ from Pages.Loginpage import LoginPage
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 
+from tests.test_login_page import login_test_data
+
+
 @pytest.fixture(scope="session")
 def driver():
 
@@ -30,3 +33,9 @@ def login_page(driver):
     page = LoginPage(driver)
     page.open()  # Navigate to home page URL
     return page
+@pytest.fixture
+
+def login_as_user(login_page):
+    login_page.enter_username(login_test_data["standardUser"]["username"])
+    login_page.enter_password(login_test_data["standardUser"]["password"])
+    login_page.click_login_btn()
