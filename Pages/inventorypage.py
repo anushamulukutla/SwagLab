@@ -17,3 +17,5 @@ class Inventorypage:
 
     def get_all_products(self):
         return self.driver.find_elements(By.CLASS_NAME, "inventory_item_name")
+
+    

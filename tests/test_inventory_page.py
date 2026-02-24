@@ -62,4 +62,22 @@ class TestInventoryPage:
         for product in actual_products:
             print(product)
 
+    @pytest.mark.tc_id("TC_INV_002")
+    def test_inventory_product_name_displayed_for_each_item(self, driver, login_as_user):
 
+        inventory_page = inventorypage.Inventorypage(driver)
+
+        WebDriverWait(driver, 10).until(EC.url_contains("/inventory.html"))
+
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_all_elements_located((By.CSS_SELECTOR, ".inventory_item_name"))
+        )
+
+        products = inventory_page.get_all_products()
+        actual_names = [(p.text or "").strip() for p in products]
+
+        print("\nEXPECTED: every product name is non-empty")
+        print("ACTUAL product names:", actual_names)
+
+        assert len(actual_names) > 0, "No products found on inventory page."
+        assert all(actual_names), f"Some product names are empty. Actual list: {actual_names}"
