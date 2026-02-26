@@ -62,3 +62,12 @@ class TestLoginPage:
         login_page.enter_password(login_test_data["problemUser"]["password"])
         login_page.click_login_btn()
         assert "/inventory.html" in driver.current_url
+    @pytest.mark.tc_id("TC_LGN_004")
+    def test_login_with_performance_glitch_user(self,login_page,driver):
+        login_page.enter_username(login_test_data["performanceGlitchUser"]["username"])
+        login_page.enter_password(login_test_data["performanceGlitchUser"]["password"])
+        login_page.click_login_btn()
+        time.sleep(5)
+        assert "/inventory.html" in driver.current_url
+
+
