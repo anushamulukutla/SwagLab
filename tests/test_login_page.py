@@ -19,7 +19,6 @@ with open (TESTDATA_FILE) as loginuser_data:
 
 class TestLoginPage:
 
-
     @pytest.mark.smoke
     def test_open_saucedemopage(self, login_page):
         """
@@ -60,5 +59,14 @@ class TestLoginPage:
         # Login with problem_user (same as colleague did standard_user)
         login_page.enter_username(login_test_data["problemUser"]["username"])
         login_page.enter_password(login_test_data["problemUser"]["password"])
+        login_page.click_login_btn()
+        assert "/inventory.html" in driver.current_url
+
+    def test_login_with_performance_glitch_user(self, login_page, driver):
+        # TC_LGN_004: Verify performance_glitch_user logs in but with slow performance
+
+        # Login with performance_glitch_user (same as colleague did standard_user)
+        login_page.enter_username(login_test_data["performanceGlitchUser"]["username"])
+        login_page.enter_password(login_test_data["performanceGlitchUser"]["password"])
         login_page.click_login_btn()
         assert "/inventory.html" in driver.current_url

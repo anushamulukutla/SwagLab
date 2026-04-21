@@ -14,7 +14,6 @@ class Inventorypage:
         inventory_price_ele = self.driver.find_elements(*self.Inventory_price)
         price_list = [price.text for price in inventory_price_ele]
         return price_list
-
     def get_all_products(self):
         return self.driver.find_elements(By.CLASS_NAME, "inventory_item_name")
 
