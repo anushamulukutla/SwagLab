@@ -70,3 +70,5 @@ class TestLoginPage:
         login_page.enter_password(login_test_data["performanceGlitchUser"]["password"])
         login_page.click_login_btn()
         assert "/inventory.html" in driver.current_url
+        print("Logged in with performance_glitch_user, but performance may be slow as expected")
+        print("current after login :",driver.current_url)
