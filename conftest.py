@@ -3,7 +3,7 @@ from selenium import webdriver
 from Pages.Loginpage import LoginPage
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-
+from webdriver_manager.chrome import ChromeDriverManager
 from tests.test_login_page import login_test_data
 
 
@@ -20,13 +20,13 @@ def driver():
         "profile.password_manager_leak_detection": False
     }
     chrome_options.add_experimental_option("prefs", prefs)
-
-    # DO NOT pass chrome_options=None
-    driver = webdriver.Chrome(options=chrome_options)
+    # ✅ Use WebDriverManager
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
     yield driver
-
     driver.quit()
+
 @pytest.fixture
 def login_page(driver):
     # Initialize HomePage object
